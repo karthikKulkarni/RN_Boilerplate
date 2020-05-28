@@ -33,7 +33,7 @@ Package name can be updated using "react-native-rename" npm. But this also chang
 
 #### 5. Install ESlint, prettier and types for each
 
-`$ yarn add --dev eslint prettier eslint-plugin-react eslint-plugin-import eslint-plugin-jsx-a11y @typescript-eslint/eslint-plugin eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-prettier`
+`$ yarn add --dev eslint prettier eslint-plugin-react eslint-plugin-import eslint-plugin-jsx-a11y @typescript-eslint/eslint-plugin eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-prettier husky pretty-quick`
 
 #### 6. Config ES & TS lint
 
@@ -45,7 +45,6 @@ Add rule to suppress v3 of TS <a href="https://github.com/typescript-eslint/type
 `rules:['@typescript-eslint/camelcase': 'off',]`
 
 Update eslint to include tsconfig.json
-
 ```
   parserOptions: {
     createDefaultProgram: true,
