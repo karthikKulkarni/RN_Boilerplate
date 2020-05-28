@@ -1,0 +1,101 @@
+# ReactNative_TS_ESlint_Prettier
+
+A boiler plate for React Native, TS, ES Lint, Prettier, Jest
+
+# Upgrade all the libs/dependencies to latest before starting off to build actual functionality
+
+`$ yarn upgrade-interactive --latest`
+
+### Steps:
+
+#### 1. Create react native app with typescript template
+
+`$ npx react-native init <ProjectName> --template react-native-template-typescript`
+
+#### 3. Update the package name/ bundle identifier if necessary
+
+##### a. iOS:
+
+Open xcode -> `<ProjectName>` -> Targets `<select ProjectName>` -> General -> Bundle Identifier.
+
+##### b. Android:
+
+Package name can be updated using "react-native-rename" npm. But this also changing of app name.
+
+#### 4. Add project to git <a href="https://help.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line">Link </a>
+
+`$ git init`</br>
+`$ git add .`</br>
+`$ git commit -m "Initial commit"`</br>
+`$ git remote add origin <remote_repository_URL>`</br>
+`$ git remote -v`</br>
+`$ git push -u origin master`
+
+#### 5. Install ESlint, prettier and types for each
+
+`$ yarn add --dev eslint prettier eslint-plugin-react eslint-plugin-import eslint-plugin-jsx-a11y @typescript-eslint/eslint-plugin eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-prettier`
+
+#### 6. Config ES & TS lint
+
+Make sure you have ESLint plugin installed for VSCode</br>
+And update .eslintrc.js </br>
+`module.exports = { root: true, extends: ['@react-native-community', 'airbnb-typescript', 'prettier', 'prettier/@typescript-eslint', 'prettier/react'], };` </br>
+
+Add rule to suppress v3 of TS <a href="https://github.com/typescript-eslint/typescript-eslint/issues/2077#issuecomment-634811363">Link</a>
+`rules:['@typescript-eslint/camelcase': 'off',]`
+
+Update eslint to include tsconfig.json
+
+<code>
+  parserOptions: {
+    createDefaultProgram: true,
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+  },
+  </code>
+
+Additionally update the VSCode Workspace setting, add </br>
+`"eslint.validate": [ "javascript", "javascriptreact", "typescript", "typescriptreact" ]`
+
+#### 7. Config prettier
+
+Make sure you have Prettier plugin installed for VSCode</br>
+`{ "singleQuote": true, "trailingComma": "all", }`
+
+#### 8. Exclude test files from ts in tsconfig.js
+
+`"exclude": [ "__tests__/**/*-test.ts" ]`
+
+#### 9. Enable Hermes engine for android <a href="https://facebook.github.io/react-native/docs/hermes">Link</a>
+
+`android/app/build.gradle`<br/>
+"enableHermes": true // clean and rebuild if changing</br>
+`proguard-rules.pro`</br>
+-keep class com.facebook.hermes.unicode.\*_ { _; }
+
+#### 10. Build the app
+
+`$react-native run-ios / react-native run-android`<br/>
+or<br/>
+`$yarn ios / yarn android`<br/>
+
+#### 11. Commit all the new git changes
+
+`$ git add .` </br>
+`$ git commit -m "Config TS ES prettier"`</br>
+`$ git push`</br>
+
+#### 12. Setup Husky and configure to check any prettier and Eslint
+
+#### Install Husky
+
+`$ npm install --save-dev pretty-quick husky` </br>
+
+#### Configure husky in package.json
+
+`"husky": { "hooks": { "pre-commit": "pretty-quick --staged && npm run lint" } }`
+
+All set!!! build the app using
+`$react-native run-ios/run-android` </br>
+or</br>
+`$yarn android/ios`</br>

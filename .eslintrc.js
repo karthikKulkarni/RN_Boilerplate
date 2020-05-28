@@ -10,6 +10,8 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   parserOptions: {
+    createDefaultProgram: true,
+    tsconfigRootDir: __dirname,
     project: './tsconfig.json',
     sourceType: 'module',
     ecmaFeatures: {
@@ -27,5 +29,6 @@ module.exports = {
         explicitSpread: 'ignore',
       },
     ],
+    '@typescript-eslint/camelcase': 'off',
   },
 };
