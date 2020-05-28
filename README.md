@@ -2,7 +2,7 @@
 
 A boiler plate for React Native, TS, ES Lint, Prettier, Jest
 
-# Upgrade all the libs/dependencies to latest before starting off to build actual functionality
+Upgrade all the libs/dependencies to latest before starting off to build actual functionality
 
 `$ yarn upgrade-interactive --latest`
 
@@ -46,13 +46,13 @@ Add rule to suppress v3 of TS <a href="https://github.com/typescript-eslint/type
 
 Update eslint to include tsconfig.json
 
-<code>
+```
   parserOptions: {
     createDefaultProgram: true,
     tsconfigRootDir: __dirname,
     project: './tsconfig.json',
   },
-  </code>
+  ```
 
 Additionally update the VSCode Workspace setting, add </br>
 `"eslint.validate": [ "javascript", "javascriptreact", "typescript", "typescriptreact" ]`
